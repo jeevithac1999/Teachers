@@ -1,0 +1,31 @@
+<div class="container">
+  <h1>Teachers Details</h1>
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Name</th>
+        <th scope="col">Age</th>
+        <th scope="col">Gender</th>
+        <th scope="col">Subject</th>
+        <th scope="col">Update</th>
+        <th scope="col">Delete</th>
+      </tr>
+    </thead>
+    <tbody>
+      {{#each teachers}}
+      <tr>
+        <th scope="row">{{formatIndex @index}}</th>
+        <td><a href="/web/teachers/{{this.id}}">{{this.firstname}} {{this.lastname}}</a></td>
+        <td>{{this.age}}</td>
+        <td>{{this.gender}}</td>
+        <td>{{this.course}}</td>
+        <td><a href="/web/edit-teacher/{{this.id}}">Edit</a></td>
+        <td> <a href="/web/teachers/delete/{{this.id}}"
+          onclick="return confirm('Are you sure you want to Delete?')">Delete</a>
+      </td>
+      </tr>
+      {{/each}}
+    </tbody>
+  </table>
+</div>

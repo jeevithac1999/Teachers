@@ -1,0 +1,66 @@
+<h1>TEACHER</h1>
+<form action="/teacher" id="addTeacherDetails" method="post">
+  <input type="hidden" name:"id" value="{{TeacherID}}">
+  <label for="firstname">FIRST NAME :</label>
+  <input type="text" id="firstname" name="firstname" value="{{teacher.firstname}}"><br>
+  <label for="lastname">LAST NAME :</label>
+  <input type="text" id="lastname" name="lastname" value="{{teacher.lastname}}"><br>
+  <label for="age">AGE :</label>
+  <input type="number" id="age" name="age" value="{{teacher.age}}"><br>
+  <label for="gender">Gender:</label>
+  <input type="radio" id="Gender-Male" name="gender" value="Male"
+    checked={{#if (ifEquality teacher.gender "Male")}}checked{{/if}} required>
+  <label for="Gender-Male">Male</label>
+  <input type="radio" id="Gender-Female" name="gender" value="Female"
+    checked="{{#if (ifEquality teacher.gender "Female" )}}true{{/if}}">
+  <label for="Gender-Female">Female</label><br>
+  <label for="course">Course</label>
+  <input type="text" id="course" name="course" value="{{teacher.course}}"><br>
+  <input type="submit" value="{{#if (ifEquality mode "add")}}Add Teacher{{else}}Save{{/if}}">
+</form>
+<script>
+  const $addTeacherForm = document.querySelector("#addTeacherDetails")
+  $addTeacherForm.addEventListener("submit", (event) => {
+    let teacherDetailsJson = {}
+    event.preventDefault()
+    const teacherFormDetails = new FormData($addTeacherForm)
+    for (const teacherDetails of teacherFormDetails.entries()) {
+      const [key, value] = teacherDetails
+      teacherDetailsJson[key] = value
+    }
+    let url, config
+    if ("{{mode}}" === "add") {
+      url = "/teacher"
+      config = {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(teacherDetailsJson)
+      }
+    } else {
+      url = "/teacher/{{TeacherID}}"
+      config = {
+        method: 'PATCH',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(teacherDetailsJson)
+      }
+    }
+    fetch(url, config)
+      .then(response => {
+        if (response.ok) {
+          return response.json()
+        } else {
+          throw Error("Request Failed")
+        }
+      })
+      .then(data => {
+        alert(data.message)
+      })
+      .catch(() => {
+        alert("Something went wrong!:(")
+      })
+  })
+</script>
