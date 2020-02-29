@@ -5,7 +5,8 @@ const teachers = [
     lastname: "Chamarthi",
     age: 45,
     gender: "Female",
-    course: "Telugu"
+    course: "Telugu",
+    salary: 100000
   },
   {
     id: 2,
@@ -13,7 +14,8 @@ const teachers = [
     lastname: "Chamarthi",
     age: 45,
     gender: "Male",
-    course: "Hindi"
+    course: "Hindi",
+    salary: 200000
   },
   {
     id: 3,
@@ -21,7 +23,8 @@ const teachers = [
     lastname: "Chamarthi",
     age: 22,
     gender: "Female",
-    course: "English"
+    course: "English",
+    salary: 300000
   }
 ];
 

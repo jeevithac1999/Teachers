@@ -40,7 +40,8 @@ teacherRouter
         lastname = requiredTeacher.lastname,
         age = requiredTeacher.age,
         gender = requiredTeacher.gender,
-        course= requiredTeacher.course
+        course= requiredTeacher.course,
+        salary= requiredTeacher.salary
       } = req.body;
       teachers[requiredTeacherIndex] = {
         ID: requiredTeacher.id,
@@ -48,7 +49,8 @@ teacherRouter
         lastname,
         age,
         gender,
-        course
+        course,
+        salary
       };
       res.status(200).send({ message: "Teacher Details Updated" });
     }

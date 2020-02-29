@@ -61,7 +61,7 @@ app.get("/web/add-teacher", (req, res) => {
 app.get("/web/edit-teacher/:id", (req, res) => {
   const { id = "" } = req.params;
   const requiredTeacher = teachers.find(Teacher => {
-    if (id === Teacher.id.toString()) {
+    if (parseInt(id,10) === Teacher.id) {
       return true;
     } else {
       return false;
