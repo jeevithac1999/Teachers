@@ -101,4 +101,4 @@ app.use("/teachers", teachersRouter);
 
 const server = app.listen("8080", (req, res) => {
   console.log(`Server is running on port ${server.address().port}.`);
-})
+});
